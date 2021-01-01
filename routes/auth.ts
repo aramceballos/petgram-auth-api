@@ -45,7 +45,7 @@ const authApi = (app: express.Application) => {
             sub: id,
             name,
             email,
-            scopes: apiKeyToken.scopes,
+            scopes: apiKey[0].scopes,
           }
 
           const token = jwt.sign(payload, envConfig.authJwtSecret as string, {
