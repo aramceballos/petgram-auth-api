@@ -38,7 +38,7 @@ class MongoLib {
     return MongoLib.connection
   }
 
-  public getAll(collection: string, query?: string) {
+  public getAll(collection: string, query?: any) {
     return this.connect().then((db: any) => {
       return db.collection(collection).find(query).toArray()
     })
