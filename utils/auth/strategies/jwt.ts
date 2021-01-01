@@ -1,9 +1,9 @@
-import passport from "passport"
-import { Strategy, ExtractJwt } from "passport-jwt"
-import boom from "@hapi/boom"
+import passport from 'passport'
+import { Strategy, ExtractJwt } from 'passport-jwt'
+import boom from '@hapi/boom'
 
-import UsersService from "../../../services/users"
-import { envConfig } from "../../../config"
+import UsersService from '../../../services/users'
+import { envConfig } from '../../../config'
 
 passport.use(
   new Strategy(

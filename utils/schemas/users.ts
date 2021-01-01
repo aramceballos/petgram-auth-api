@@ -1,4 +1,4 @@
-import joi from "@hapi/joi"
+import joi from '@hapi/joi'
 
 export const userIdSchema = joi.string().regex(/^[0-9a-fA-F]{24}$/)
 

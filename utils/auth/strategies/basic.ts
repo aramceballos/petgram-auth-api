@@ -1,9 +1,9 @@
-import passport from "passport"
-import { BasicStrategy } from "passport-http"
-import boom from "@hapi/boom"
-import bcrypt from "bcrypt"
+import passport from 'passport'
+import { BasicStrategy } from 'passport-http'
+import boom from '@hapi/boom'
+import bcrypt from 'bcrypt'
 
-import UsersService from "../../../services/users"
+import UsersService from '../../../services/users'
 
 passport.use(
   new BasicStrategy(async (email, password, cb) => {

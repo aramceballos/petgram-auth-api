@@ -1,14 +1,15 @@
-import express from "express"
-import helmet from "helmet"
+import express from 'express'
+import helmet from 'helmet'
 
-import { envConfig } from "./config"
-import usersApi from "./routes/users"
+import { envConfig } from './config'
+import usersApi from './routes/users'
+import authApi from './routes/auth'
 import {
   logErrors,
   errorHandler,
   wrapErrors,
-} from "./utils/middlewares/errorHandlers"
-import notFoundHandler from "./utils/middlewares/notFoundHandler"
+} from './utils/middlewares/errorHandlers'
+import notFoundHandler from './utils/middlewares/notFoundHandler'
 
 const app: express.Application = express()
 
@@ -18,6 +19,7 @@ app.use(helmet())
 
 // Routes
 usersApi(app)
+authApi(app)
 
 // Catch 404
 app.use(notFoundHandler)

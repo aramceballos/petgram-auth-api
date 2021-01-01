@@ -1,6 +1,6 @@
-import bcrypt from "bcrypt"
+import bcrypt from 'bcrypt'
 
-import MongoLib from "../lib/mongo"
+import MongoLib from '../lib/mongo'
 
 type TUser = {
   id: string
@@ -16,7 +16,7 @@ class UsersService {
   private mongoDB: MongoLib
 
   constructor() {
-    this.collection = "users"
+    this.collection = 'users'
     this.mongoDB = new MongoLib()
   }
 
@@ -35,7 +35,7 @@ class UsersService {
   public async createUser({ user }: { user: TUser }) {
     const { name, userName, email, password } = user
 
-    let hashedPassword = ""
+    let hashedPassword = ''
 
     bcrypt.hash(password, 10, (err, hash) => {
       hashedPassword = hash

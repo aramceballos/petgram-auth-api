@@ -1,5 +1,5 @@
-import { MongoClient, ObjectId } from "mongodb"
-import { envConfig } from "../config"
+import { MongoClient, ObjectId } from 'mongodb'
+import { envConfig } from '../config'
 
 const USER = encodeURIComponent(envConfig.dbUser as string)
 const PASSWORD = encodeURIComponent(envConfig.dbPassword as string)
@@ -29,7 +29,7 @@ class MongoLib {
             reject(err)
           }
 
-          console.log("Connected succesfully to mongo")
+          console.log('Connected succesfully to mongo')
           resolve(this.client.db(this.dbName))
         })
       })

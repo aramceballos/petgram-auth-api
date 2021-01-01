@@ -1,29 +1,29 @@
-import express from "express"
-import bcrypt from "bcrypt"
+import express from 'express'
+import bcrypt from 'bcrypt'
 
-import UsersService from "../services/users"
+import UsersService from '../services/users'
 
 export default (app: express.Application) => {
   const router = express.Router()
 
-  app.use("/api/users", router)
+  app.use('/api/users', router)
 
   const usersService = new UsersService()
 
-  router.get("/", async (_req, res, next) => {
+  router.get('/', async (_req, res, next) => {
     try {
       const users = await usersService.getUsers()
 
       res.status(200).json({
         data: users,
-        message: "users retrieved",
+        message: 'users retrieved',
       })
     } catch (error) {
       next(error)
     }
   })
 
-  router.get("/:userId", async (req, res, next) => {
+  router.get('/:userId', async (req, res, next) => {
     const { userId } = req.params
 
     try {
@@ -31,7 +31,7 @@ export default (app: express.Application) => {
 
       res.status(200).json({
         data: user,
-        message: "user retrieved",
+        message: 'user retrieved',
       })
     } catch (error) {
       next(error)
