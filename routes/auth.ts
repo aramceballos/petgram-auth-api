@@ -4,7 +4,10 @@ import boom from '@hapi/boom'
 import jwt from 'jsonwebtoken'
 
 import ApiKeysService from '../services/apiKeys'
+import UsersService from '../services/users'
 import { envConfig } from '../config'
+import validationHandler from '../utils/middlewares/validationHandler'
+import { createUserSchema } from '../utils/schemas/users'
 
 import '../utils/auth/strategies/basic'
 
@@ -14,6 +17,7 @@ const authApi = (app: express.Application) => {
   app.use('/api/auth', router)
 
   const apiKeysService = new ApiKeysService()
+  const usersService = new UsersService()
 
   router.post('/sign-in', (req, res, next) => {
     const { apiKeyToken } = req.body
@@ -39,11 +43,12 @@ const authApi = (app: express.Application) => {
             next(boom.unauthorized())
           }
 
-          const { _id: id, name, email } = user
+          const { _id: id, name, userName, email } = user
 
           const payload = {
             sub: id,
             name,
+            userName,
             email,
             scopes: apiKey[0].scopes,
           }
@@ -59,6 +64,25 @@ const authApi = (app: express.Application) => {
       }
     })(req, res, next)
   })
+
+  router.post(
+    '/sign-up',
+    validationHandler(createUserSchema),
+    (req, res, next) => {
+      const { body: user } = req
+
+      try {
+        const createdUserId = usersService.createUser({ user })
+
+        res.status(201).json({
+          data: createdUserId,
+          message: 'user created',
+        })
+      } catch (error) {
+        next(error)
+      }
+    }
+  )
 }
 
 export default authApi

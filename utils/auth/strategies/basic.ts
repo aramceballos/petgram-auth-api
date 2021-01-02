@@ -17,14 +17,13 @@ passport.use(
       }
 
       bcrypt.compare(password, user.password, (err, result) => {
-        if (err) {
-          cb(boom.unauthorized(), false)
+        delete user.password
+        if (result) {
+          return cb(null, user)
         }
+
+        return cb(boom.unauthorized(), false)
       })
-
-      delete user.password
-
-      return cb(null, user)
     } catch (error) {
       cb(error)
     }

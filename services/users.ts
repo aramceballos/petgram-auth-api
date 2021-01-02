@@ -32,23 +32,24 @@ class UsersService {
     return user
   }
 
-  public async createUser({ user }: { user: TUser }) {
+  public createUser({ user }: { user: TUser }) {
     const { name, userName, email, password } = user
 
-    let hashedPassword = ''
+    bcrypt.hash(password, 10, async (err, hash) => {
+      if (err) {
+        console.log(err)
+        return
+      }
 
-    bcrypt.hash(password, 10, (err, hash) => {
-      hashedPassword = hash
+      const createdUserId = await this.mongoDB.create(this.collection, {
+        name,
+        userName,
+        email,
+        password: hash,
+      })
+
+      return createdUserId
     })
-
-    const createdUserId = await this.mongoDB.create(this.collection, {
-      name,
-      userName,
-      email,
-      password: hashedPassword,
-    })
-
-    return createdUserId
   }
 }
 
