@@ -1,6 +1,8 @@
 {
   "name": "petgram-auth-api",
   "version": 2,
+  "builds": [{ "src": "index.ts", "use": "@vercel/node" }],
+  "routes": [{ "src": "/(.*)", "dest": "/index.ts" }],
   "env": {
     "PORT": "5000",
     "CORS": "*",
