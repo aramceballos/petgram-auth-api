@@ -1,7 +1,7 @@
 {
   "name": "petgram-auth-api",
   "version": "1.0.0",
-  "description": "Authorization API for Petgram",
+  "description": "Authentication API for Petgram",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.ts",
