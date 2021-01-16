@@ -2,7 +2,7 @@
   "name": "petgram-auth-api",
   "version": 2,
   "env": {
-    "PORT": 5000,
+    "PORT": "5000",
     "CORS": "*",
     "DB_USER": "@petgram-db-user",
     "DB_PASSWORD": "@petgram-db-password",
