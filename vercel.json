@@ -1,0 +1,17 @@
+{
+  "name": "petgram-auth-api",
+  "version": 2,
+  "env": {
+    "PORT": 5000,
+    "CORS": "*",
+    "DB_USER": "@petgram-db-user",
+    "DB_PASSWORD": "@petgram-db-password",
+    "DB_HOST": "@petgram-db-host",
+    "DB_NAME": "@petgram-db-name",
+    "DEFAULT_USER_PASSWORD": "@petgram-default-user-password",
+    "DEFAULT_ADMIN_PASSWORD": "@petgram-default-admin-password",
+    "AUTH_JWT_SECRET": "@petgram-auth-jwt-secret",
+    "PUBLIC_API_KEY_TOKEN": "@petgram-public-api-key-token",
+    "ADMIN_API_KEY_TOKEN": "@petgram-admin-api-key-token"
+  }
+}
